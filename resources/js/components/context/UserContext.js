@@ -14,7 +14,7 @@ export const  UserContextProvider = (props) => {
     const [alertMessage,setAlertMessage] = useState({message:'',type:''});
     const [err,setErr] = useState({
         invalid:'',
-        err:'',
+        err:{},
     })
     const history = useHistory();
     
@@ -91,11 +91,8 @@ export const  UserContextProvider = (props) => {
                 const response = await Axios.put(`/api/user/${id}`,{name,email,password},{headers:headers});
                 console.log(response.data)
                 setAlertMessage({...alertMessage,message:response.data.message, type:'update'});
-                setErr("");
                 getUsers();
-                setTimeout(()=>{
-                    alertMessage.type=""
-                },2000)
+
                 history.push('/home');
             }
             catch(err)

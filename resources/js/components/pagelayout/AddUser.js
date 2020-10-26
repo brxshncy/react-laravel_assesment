@@ -1,4 +1,4 @@
-import React,{useState,useContext} from 'react';
+import React,{useState,useContext,useEffect} from 'react';
 import {Container,Row,Col,Card,Form,Input,Button,CardBody,CardHeader,FormGroup,Label,Alert} from 'reactstrap'
 import HomeNav from './HomeNav';
 import {UserContext} from '../context/UserContext';
@@ -9,7 +9,10 @@ const AddUser = () => {
     const {addUser,err} = useContext(UserContext);
     const {name,email,password} = err.err; 
     const [data,setData] = useState({name:'',email:'',password:'',retype_password:''});
-
+     
+    useEffect(()=>{
+        console.log(err.err)
+    },[])
     return(
         <div>
             <HomeNav/>
@@ -43,7 +46,7 @@ const AddUser = () => {
                                         <FormGroup>
                                             <Label>Password</Label>
                                             <Input type="password" onChange={(e)=> setData({...data,password:e.target.value})} placeholder="Enter Password"/>
-                                            {password ? (<Alert color="danger" className="p-1 mt-2 text-center"><small className="text-danger">{password.toString()}</small></Alert>) : ''}
+                                            
                                         </FormGroup>
                                     </Col>
                                     <Col>
@@ -51,6 +54,11 @@ const AddUser = () => {
                                             <Label>Retype Password</Label>
                                             <Input type="password" onChange={(e)=> setData({...data,retype_password:e.target.value})} placeholder="Enter Retype Password"/>
                                         </FormGroup>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col>
+                                        {password ? (<Alert color="danger" className="p-1 mt-2 text-center"><small className="text-danger">{password.toString()}</small></Alert>) : ''}
                                     </Col>
                                 </Row>
                                 <Row>

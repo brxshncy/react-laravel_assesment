@@ -59,7 +59,7 @@ const Signup = () => {
                             </Row>
                             <Row>
                                 <Col>
-                                    {err.invalid ? (<Alert color="danger" className="text-center mt-1"><small>{err.invalid.message}</small></Alert>) : ''}
+                                    {err.invalid ? (<Alert color="danger" className="text-center mt-1"><small>{err.invalid}</small></Alert>) : ''}
                                 </Col>
                             </Row>
                             <Row>
