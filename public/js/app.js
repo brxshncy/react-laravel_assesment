@@ -87114,6 +87114,14 @@ var UserContextProvider = function UserContextProvider(props) {
     };
   }();
 
+  var cleanAlertMssg = function cleanAlertMssg() {
+    console.log("hey");
+    setAlertMessage(_objectSpread(_objectSpread({}, alertMessage), {}, {
+      message: '',
+      type: ''
+    }));
+  };
+
   Object(react__WEBPACK_IMPORTED_MODULE_2__["useEffect"])(function () {
     getUsers();
     setLoading(false);
@@ -87130,7 +87138,8 @@ var UserContextProvider = function UserContextProvider(props) {
       alertMessage: alertMessage,
       getSpecificUser: getSpecificUser,
       specificUser: specificUser,
-      editUser: editUser
+      editUser: editUser,
+      cleanAlertMssg: cleanAlertMssg
     }
   }, !loading && props.children);
 };
@@ -87195,7 +87204,7 @@ var AddUser = function AddUser() {
       setData = _useState2[1];
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    console.log(err.err);
+    console.log(err.err.name);
   }, []);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_HomeNav__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Container"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Row"], {
     className: "justify-content-center"
@@ -87908,8 +87917,7 @@ var Users = function Users() {
       users = _useContext.users;
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {}, [users]);
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    console.log(users);
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {// console.log(users)
   }, []);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Table"], {
     striped: true,

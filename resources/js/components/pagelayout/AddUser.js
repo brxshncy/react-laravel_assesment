@@ -11,7 +11,7 @@ const AddUser = () => {
     const [data,setData] = useState({name:'',email:'',password:'',retype_password:''});
      
     useEffect(()=>{
-        console.log(err.err)
+        console.log(err.err.name)
     },[])
     return(
         <div>

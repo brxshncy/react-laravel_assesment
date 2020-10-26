@@ -113,6 +113,11 @@ export const  UserContextProvider = (props) => {
 
     }
 
+    const cleanAlertMssg = () =>{
+        console.log("hey")
+        setAlertMessage({...alertMessage,message:'',type:''})
+    }
+
     useEffect(()=>{
         getUsers();
         setLoading(false)
@@ -129,7 +134,7 @@ export const  UserContextProvider = (props) => {
 
 
     return(
-        <UserContext.Provider value={{users,addUser,err,deleteUser,alertMessage,getSpecificUser,specificUser,editUser}}>
+        <UserContext.Provider value={{users,addUser,err,deleteUser,alertMessage,getSpecificUser,specificUser,editUser,cleanAlertMssg}}>
             { !loading && props.children}
         </UserContext.Provider>
     )

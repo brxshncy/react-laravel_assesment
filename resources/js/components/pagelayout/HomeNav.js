@@ -9,14 +9,15 @@ const HomeNav = (props) => {
   const {handleLogout} = useContext(AuthContext);
 
 
+
   return (
     <div>
         <Nav pills tabs className="p-3 justify-content-end">
             <NavItem>
-              <NavLink  to="/home"  tag={Link}>Home</NavLink>
+              <NavLink   to="/home"  tag={Link}>Home</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink  to="/create/user"  tag={Link}>Add User</NavLink>
+              <NavLink    to="/create/user"  tag={Link}>Add User</NavLink>
             </NavItem>
             <NavItem>
               <NavLink onClick={handleLogout}>Logout</NavLink>

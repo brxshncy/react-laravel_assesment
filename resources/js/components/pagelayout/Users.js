@@ -10,8 +10,9 @@ const Users = () =>{
     useEffect(()=>{
 
     },[users])
+
     useEffect(()=>{
-        console.log(users)
+       // console.log(users)
     },[])    
     return(
         <Table striped bordered className="mt-2">
