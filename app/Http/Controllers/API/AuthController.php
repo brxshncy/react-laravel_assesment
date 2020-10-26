@@ -35,7 +35,7 @@ class AuthController extends Controller
             return response()->json(['user' => $user, 'accessToken' => $accessToken, 'role' => $userRole],200);
         }
         catch(Exception $err){
-            return response()->json(['message' => $err]);
+            return response()->json(['message' => $err],406);
         }
            
     }
