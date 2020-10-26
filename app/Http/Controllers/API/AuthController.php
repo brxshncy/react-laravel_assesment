@@ -6,17 +6,38 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserPostRequest;
 use App\Http\Requests\UserLoginRequest;
+use App\Mail\NewUserMail;
+use Illuminate\Support\Facades\Mail;
 use App\Models\User;
-
+use Klaviyo\Klaviyo as Klaviyo;
+use Spatie\Permission\Models\Role;
+use Klaviyo\Model\ProfileModel as KlaviyoProfile;
 
 class AuthController extends Controller
 {
     public function register(UserPostRequest $request)
     {
+        try{
+            $client = new Klaviyo( 'pk_cc9e88596d897ac7615de47772fd2ce725', 'WxWBc5' );
             $request->merge(['password' => bcrypt($request->password)]);
+            Mail::to($request->email)->send(new NewUserMail());
+            $role = Role::find(1);
             $user =  User::create($request->all());
+            $userRole = $user->assignRole($role);
+            $profile = new KlaviyoProfile(
+                array(
+                    '$email' => $request->email,
+                    '$first_name' => $request->name,
+                )
+            );
+            $client->lists->addMembersToList('UecVt6',[$profile]);
             $accessToken = $user->createToken('userToken')->accessToken;
-            return response()->json(['user' => $user, 'accessToken' => $accessToken],200);
+            return response()->json(['user' => $user, 'accessToken' => $accessToken, 'role' => $userRole],200);
+        }
+        catch(Exception $err){
+            return response()->json(['message' => $err]);
+        }
+           
     }
     public function login(UserLoginRequest $request)
     {
